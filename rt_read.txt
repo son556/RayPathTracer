@@ -1,0 +1,29 @@
+type: [0, SPHERE, sp], [1, CYLINDER, cy], [2, PLANE, pl], [3, XYZ_PLANE, xy or xz or yz], [4, CUBE, cu],
+[5, CONE, co], [6, PARABOLOID, pa]
+
+material: [7, METAL], [8, GLASS], [9, PLASTIC], [10, LIGHT] else-> PLASTIC
+
+texture: [11, CHECK_TEXTURE], [12, NOISE_TEXTURE], [13, IMAGE_TEXTURE] // not use: -1
+
+fuzz, ref_idx-> not use: -1
+
+light(L): point(vec3), ratio(num), color(vec3[0 ~ 255]), shape(0->xy_pl, 1->xz_pl, 2->yz_pl, othre->sphere)
+
+cam(C): point(vec3), n_vec(vec3), fov(num) //n_vec => normal vector
+
+sphere(sp): center(vec3), diameter(num), color, material, texture, fuzz, ref_idx(num, 굴절률)
+
+cylinder(cy): center, n_vec, color, diameter, height, material, texture, fuzz, ref_idx
+
+plane(pl): center, n_vec, color
+
+cube(cu): center, n_vec1, n_vec2(n_vec1 n_vec2 는 수직), color, len(정육면체 한변의 길이), material, texture,
+	fuzz, ref_idx
+
+cone(co): center, n_vec, color, diameter, height, material, texture, fuzz, ref_idx
+
+paraboloid(pa): center, move(초점으로 부터 준선이 얼마나 떨어져 있는가 vec3), color, len, material, texture, fuzz,
+	ref_idx
+
+xy_pl(xy), xz_pl(xz), yz_pl(yz): center, color, len, xyz_type(0->xy, 1->xz, 2->yz), material, texture, 
+	fuzz, ref_idx
